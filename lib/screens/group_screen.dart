@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flash_chat_project/screens/group_chat_screen.dart';
 
+import 'group_creation_screen.dart';
+
 class GroupsScreen extends StatefulWidget {
   static String id = 'groups_screen';
 
@@ -414,6 +416,10 @@ class _GroupsScreenState extends State<GroupsScreen> {
               backgroundColor: Colors.green,
               onPressed: () {
                 setState(() {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                      builder: (context) => GroupCreationScreen()));
                   _isCreatingGroup = true;
                 });
               },

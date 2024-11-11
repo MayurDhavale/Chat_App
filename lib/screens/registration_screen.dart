@@ -132,7 +132,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             'email': email,
                             'displayName': displayName, // Add user name to Firestore
                             'lastActive': FieldValue.serverTimestamp(),
+                            'chattedwith' : [],
                             // 'lastMessageTime' :FieldValue.serverTimestamp(),
+                          });
+
+                          await _firestore.collection('users').doc(email).update({
+                            'chattedwith': FieldValue.arrayUnion([email]),
                           });
                           print('User registered and document created.');
                           // After successfully registration navigate to the login screen

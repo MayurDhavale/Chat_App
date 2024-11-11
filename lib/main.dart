@@ -1,7 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flash_chat_project/screens/group_creation_screen.dart';
 import 'package:flash_chat_project/screens/group_info_screen.dart';
 import 'package:flash_chat_project/screens/group_screen.dart';
 import 'package:flash_chat_project/screens/home_screen.dart';
+import 'package:flash_chat_project/screens/new_group_screen.dart';
+import 'package:flash_chat_project/screens/new_user_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flash_chat_project/screens/welcome_screen.dart';
 import 'package:flash_chat_project/screens/login_screen.dart';
@@ -51,6 +54,11 @@ class MyApp extends StatelessWidget {
         GroupsScreen.id : (context) => GroupsScreen(),
         HomeScreen.id : (context) => HomeScreen(),
         GroupInfoScreen.id :(context) => GroupInfoScreen(groupName: 'groupName'),
+        NewUserScreen.id : (context) => NewUserScreen(),
+        GroupCreationScreen.id : (context) => GroupCreationScreen(),
+
+
+        NewGroupScreen.id: (context) => NewGroupScreen(selectedUsers: []),
       },
     );
 

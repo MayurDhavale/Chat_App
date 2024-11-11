@@ -5,7 +5,7 @@ import 'package:rxdart/rxdart.dart';
 import '../constants/constants.dart';
 
 class IndividualChatScreen extends StatefulWidget {
-  final String chatUserEmail; // Email of the user you are chatting with
+  final String chatUserEmail; // Add this to pass the email of the chat user
 
   const IndividualChatScreen({super.key, required this.chatUserEmail});
 
@@ -21,36 +21,13 @@ class _IndividualChatScreenState extends State<IndividualChatScreen> {
   late String chatUserEmail;
 
   @override
+
   void initState() {
     super.initState();
     _auth = FirebaseAuth.instance; // Initialize Firebase Auth
     _firestore = FirebaseFirestore.instance; // Initialize Firestore
     currentUserEmail = _auth.currentUser!.email!; // Get current user's email
     chatUserEmail = widget.chatUserEmail; // Get chat user email from widget
-
-    // Mark all messages as read when the chat screen is opened
-    markMessagesAsRead(chatUserEmail, currentUserEmail);
-  }
-
-  // Function to mark messages as read and reset unread count
-  Future<void> markMessagesAsRead(String sender, String receiver) async {
-    // Update all unread messages to read
-    await _firestore
-        .collection('messages')
-        .where('sender', isEqualTo: sender)
-        .where('receiver', isEqualTo: receiver)
-        .where('read', isEqualTo: false)
-        .get()
-        .then((snapshot) {
-      for (var doc in snapshot.docs) {
-        doc.reference.update({'read': true});
-      }
-    });
-
-    // Reset the unread count for the sender
-    await _firestore.collection('users').doc(receiver).update({
-      'unreadCount.$sender': 0, // Reset unread count to 0
-    });
   }
 
   // Function to send a message
@@ -62,7 +39,6 @@ class _IndividualChatScreenState extends State<IndividualChatScreen> {
         'receiver': chatUserEmail,
         'message': _controller.text,
         'timestamp': FieldValue.serverTimestamp(),
-        'read': false, // New message is unread by default
       });
       _controller.clear(); // Clear the text field after sending
     }
@@ -88,7 +64,7 @@ class _IndividualChatScreenState extends State<IndividualChatScreen> {
         .snapshots()
         .map((snapshot) => snapshot.docs);
 
-    // Combine both streams into a single stream
+    // Combine both streams into a single stream using Rx.combinedLatest2 method which is present in rxdart package
     return Rx.combineLatest2(
       userMessagesStream,
       chatMessagesStream,
@@ -140,9 +116,9 @@ class _IndividualChatScreenState extends State<IndividualChatScreen> {
                   itemCount: messages.length,
                   itemBuilder: (context, index) {
                     final message = messages[index].data();
-                    final messageText = message['message'] ?? 'No message';
-                    final messageSender = message['sender'] ?? 'Unknown sender';
-                    final isCurrentUser = messageSender == currentUserEmail;
+                    final messageText = message['message'] ?? 'No message';  // Get message text
+                    final messageSender = message['sender'] ?? 'Unknown sender'; //Get sender
+                    final isCurrentUser = messageSender == currentUserEmail;  // Check if the sender is current user
 
                     return ChatBubble(
                       message: messageText,
@@ -153,20 +129,25 @@ class _IndividualChatScreenState extends State<IndividualChatScreen> {
               },
             ),
           ),
+
+
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
             child: Row(
               children: <Widget>[
+
                 Expanded(
                   child: TextField(
-                    controller: _controller,
-                    decoration: kMessageTextFieldDecoration,
+                    controller: _controller, // Control the text field
+                    decoration:kMessageTextFieldDecoration,
                   ),
                 ),
+
                 IconButton(
                   icon: const Icon(Icons.send),
                   onPressed: _sendMessage,
                 ),
+
               ],
             ),
           ),
@@ -176,9 +157,10 @@ class _IndividualChatScreenState extends State<IndividualChatScreen> {
   }
 }
 
+
 class ChatBubble extends StatelessWidget {
   final String message;
-  final bool isMe;
+  final bool isMe; // Indicates if the message is from the current user
 
   const ChatBubble({super.key, required this.message, required this.isMe});
 
@@ -187,28 +169,27 @@ class ChatBubble extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Align(
-        alignment: isMe ? Alignment.centerRight : Alignment.centerLeft,
+        alignment: isMe ? Alignment.centerRight : Alignment.centerLeft, // Align message bubble
         child: Container(
           decoration: BoxDecoration(
-            color: isMe ? Colors.lightBlueAccent : Colors.grey[300],
+            color: isMe ? Colors.lightBlueAccent : Colors.grey[300], // Change color based on sender
             borderRadius: isMe
                 ? const BorderRadius.only(
-              bottomLeft: Radius.circular(15.0),
-              bottomRight: Radius.circular(15.0),
-              topLeft: Radius.circular(15.0),
+              bottomLeft:  Radius.circular(15.0),
+              bottomRight:  Radius.circular(15.0),
+              topLeft:  Radius.circular(15.0),
             )
                 : const BorderRadius.only(
-              bottomLeft: Radius.circular(15.0),
+              bottomLeft:  Radius.circular(15.0),
               bottomRight: Radius.circular(15.0),
-              topRight: Radius.circular(15.0),
+              topRight:  Radius.circular(15.0),
             ),
           ),
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
           child: Text(
             message,
-            style: TextStyle(
-              fontSize: 16.0,
-              color: isMe ? Colors.white : Colors.black,
+            style: TextStyle(fontSize: 16.0,
+              color: isMe ? Colors.white : Colors.black, // Change text color based on sender
             ),
           ),
         ),

@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flash_chat_project/screens/group_chat_screen.dart';
+
 import 'package:flutter/material.dart';
 
 class GroupInfoScreen extends StatefulWidget {

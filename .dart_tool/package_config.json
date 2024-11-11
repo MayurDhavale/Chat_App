@@ -159,13 +159,13 @@
     },
     {
       "name": "leak_tracker",
-      "rootUri": "file:///C:/Users/Austraxpc17/AppData/Local/Pub/Cache/hosted/pub.dev/leak_tracker-10.0.4",
+      "rootUri": "file:///C:/Users/Austraxpc17/AppData/Local/Pub/Cache/hosted/pub.dev/leak_tracker-10.0.5",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
     {
       "name": "leak_tracker_flutter_testing",
-      "rootUri": "file:///C:/Users/Austraxpc17/AppData/Local/Pub/Cache/hosted/pub.dev/leak_tracker_flutter_testing-3.0.3",
+      "rootUri": "file:///C:/Users/Austraxpc17/AppData/Local/Pub/Cache/hosted/pub.dev/leak_tracker_flutter_testing-3.0.5",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
@@ -189,13 +189,13 @@
     },
     {
       "name": "material_color_utilities",
-      "rootUri": "file:///C:/Users/Austraxpc17/AppData/Local/Pub/Cache/hosted/pub.dev/material_color_utilities-0.8.0",
+      "rootUri": "file:///C:/Users/Austraxpc17/AppData/Local/Pub/Cache/hosted/pub.dev/material_color_utilities-0.11.1",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "meta",
-      "rootUri": "file:///C:/Users/Austraxpc17/AppData/Local/Pub/Cache/hosted/pub.dev/meta-1.12.0",
+      "rootUri": "file:///C:/Users/Austraxpc17/AppData/Local/Pub/Cache/hosted/pub.dev/meta-1.15.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -267,9 +267,9 @@
     },
     {
       "name": "test_api",
-      "rootUri": "file:///C:/Users/Austraxpc17/AppData/Local/Pub/Cache/hosted/pub.dev/test_api-0.7.0",
+      "rootUri": "file:///C:/Users/Austraxpc17/AppData/Local/Pub/Cache/hosted/pub.dev/test_api-0.7.2",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.2"
     },
     {
       "name": "typed_data",
@@ -291,7 +291,7 @@
     },
     {
       "name": "vm_service",
-      "rootUri": "file:///C:/Users/Austraxpc17/AppData/Local/Pub/Cache/hosted/pub.dev/vm_service-14.2.1",
+      "rootUri": "file:///C:/Users/Austraxpc17/AppData/Local/Pub/Cache/hosted/pub.dev/vm_service-14.2.5",
       "packageUri": "lib/",
       "languageVersion": "3.3"
     },
@@ -308,10 +308,10 @@
       "languageVersion": "3.4"
     }
   ],
-  "generated": "2024-10-03T06:26:41.928159Z",
+  "generated": "2024-10-29T05:15:31.360426Z",
   "generator": "pub",
-  "generatorVersion": "3.4.4",
+  "generatorVersion": "3.5.3",
   "flutterRoot": "file:///C:/Users/Austraxpc17/Downloads/flutter_windows_3.22.3-stable/flutter",
-  "flutterVersion": "3.22.3",
+  "flutterVersion": "3.24.3",
   "pubCache": "file:///C:/Users/Austraxpc17/AppData/Local/Pub/Cache"
 }
